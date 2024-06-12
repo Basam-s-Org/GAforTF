@@ -56,7 +56,6 @@ jobs:
       working-directory: ./pg_database
       run: |
         export exitcode=0
-#        terraform plan -detailed-exitcode -no-color -out tfplan-var || export exitcode=$?
         ./pg_database/tf.sh
 
         echo "exitcode=$exitcode" >> $GITHUB_OUTPUT
