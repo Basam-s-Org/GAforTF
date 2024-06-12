@@ -41,7 +41,7 @@ jobs:
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
-      run: ./scripts/tf_init.sh #TODO: Create this script to initialize Terraform
+      run: ./pg_database/scripts/tf_init.sh #TODO: Create this script to initialize Terraform
 
     # Checks that all Terraform configuration files adhere to a canonical format
     # Will fail the build if not
