@@ -54,7 +54,7 @@ jobs:
            echo $PWD
            cd pg_database
            echo $PWD
-           ./pg_database/terraform_init.sh
+           ./terraform_init.sh
 
     # Checks that all Terraform configuration files adhere to a canonical format
     # Will fail the build if not
