@@ -1,3 +1,4 @@
+azure_subscription_id = "${{ secrets.azure_subscriptiont_id}}"
 azure_tenant_id = "${{ secrets.azure_tenant_id}}"
 azure_client_id = "${{ secrets.azure_client_id}}" 
 azure_client_secret = "${{ secrets.azure_client_secret}}" 
