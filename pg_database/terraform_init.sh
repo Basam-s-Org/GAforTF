@@ -1,3 +1,2 @@
-cd ..
 terraform init
 
