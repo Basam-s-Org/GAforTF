@@ -89,11 +89,10 @@ jobs:
 
     # Save plan to artifacts
     - name: Publish Terraform Plan
-      uses: actions/upload-artifact@v3
-      working-directory: ./pg_database
+      uses: actions/upload-artifact@v4
       with:
         name: tfplan
-        path: tfplan
+        path: ./tfplan
 
     # Create string output of Terraform Plan
     - name: Create String Output
