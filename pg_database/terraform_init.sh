@@ -1,6 +1,5 @@
-terraform -chdir="." init
-
-echo $pwd
-
 pwd
 
+echo $PWD
+
+terraform -chdir="." init
