@@ -1,5 +1,5 @@
-echo 'azure_subscription_id="${TF_VAR_AZURE_SUBSCRIPTION_ID}"' > ./terraform.tfvars
-echo 'azure_tenant_id="${TF_VAR_TENANT_ID}"' >> ./terraform.tfvars
+echo "azure_subscription_id="${TF_VAR_AZURE_SUBSCRIPTION_ID} > ./terraform.tfvars
+echo "azure_tenant_id="$TF_VAR_TENANT_ID >> ./terraform.tfvars
 echo 'azure_client_id="${TF_VAR_AZURE_CLIENT_ID}"' >> ./terraform.tfvars
 echo 'azure_client_secret="${TF_VAR_CLIENT_SECRET}"' >> ./terraform.tfvars
 echo 'instaclustr_api_cred="${TF_VAR_INSTACLUSTR_API_CRED}"' >> ./terraform.tfvars
