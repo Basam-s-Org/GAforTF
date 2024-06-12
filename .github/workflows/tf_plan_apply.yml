@@ -56,7 +56,20 @@ jobs:
       working-directory: ./pg_database
       run: |
         export exitcode=0
-        terraform plan -detailed-exitcode -no-color -out tfplan-var "azure_subscription_id = ${{ secrets.azure_subscription_id}}" -var "azure_tenant_id = ${{ secrets.azure_tenant_id}}" -var "azure_client_id = ${{ secrets.azure_client_id}}" -var "azure_client_secret = ${{ secrets.azure_client_secret}}" -var "instaclustr_api_cred = ${{ secrets.instaclustr_api_cred}}" -var "rg_name = ${{ vars.rg_name}}" -var "rg_location = ${{ vars.rg_location}}" -var "db_name = ${{ vars.db_name}}" -var "db_version = ${{ vars.db_version}}" -var "db_secret_kv = ${{ vars.db_secret_kv}}" -var "firewall_rules = ${{ vars.firewall_rules}}" -var "cloud_provider = ${{ vars.cloud_provider}}" -var "db_extensions = ${{ vars.db_extensions}}" -var "dc_name = ${{ vars.dc_name}}" || export exitcode=$?
+        terraform plan -detailed-exitcode -no-color -out tfplan-var "azure_subscription_id = ${{ secrets.azure_subscription_id}}" \
+          -var "azure_tenant_id = ${{ secrets.azure_tenant_id}}" \
+          -var "azure_client_id = ${{ secrets.azure_client_id}}" \
+          -var "azure_client_secret = ${{ secrets.azure_client_secret}}" \
+          -var "instaclustr_api_cred = ${{ secrets.instaclustr_api_cred}}" \ 
+          -var "rg_name = ${{ vars.rg_name}}" \
+          -var "rg_location = ${{ vars.rg_location}}" \
+          -var "db_name = ${{ vars.db_name}}" \
+          -var "db_version = ${{ vars.db_version}}" \
+          -var "db_secret_kv = ${{ vars.db_secret_kv}}" \ 
+          -var "firewall_rules = ${{ vars.firewall_rules}}" \ 
+          -var "cloud_provider = ${{ vars.cloud_provider}}" \ 
+          -var "db_extensions = ${{ vars.db_extensions}}" \
+          -var "dc_name = ${{ vars.dc_name}}" || export exitcode=$?
 
         echo "exitcode=$exitcode" >> $GITHUB_OUTPUT
 
