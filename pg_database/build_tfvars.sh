@@ -1,4 +1,4 @@
-echo "azure_subscription_id=\""${TF_VAR_AZURE_SUBSCRIPTION_ID}"\"\n" > ./terraform.tfvars
+echo -e "azure_subscription_id=\""${TF_VAR_AZURE_SUBSCRIPTION_ID}"\"\n" > ./terraform.tfvars
 echo "azure_tenant_i="${TF_VAR_TENANT_ID}"\n" >> ./terraform.tfvars
 echo "azure_client_id="${TF_VAR_AZURE_CLIENT_ID}"\n">> ./terraform.tfvars
 echo "azure_client_secret="${TF_VAR_CLIENT_SECRET}"\n" >> ./terraform.tfvars
