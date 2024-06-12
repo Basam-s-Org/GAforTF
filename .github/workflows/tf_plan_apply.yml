@@ -83,6 +83,7 @@ jobs:
           echo Terraform Plan Failed!
           exit 1
         else
+          find .
           exit 0
         fi
 
