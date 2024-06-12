@@ -56,6 +56,7 @@ jobs:
       working-directory: ./pg_database
       run: |
         export exitcode=0
+        echo $pwd
         ./pg_database/tf.sh
 
         echo "exitcode=$exitcode" >> $GITHUB_OUTPUT
