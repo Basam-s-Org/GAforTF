@@ -23,6 +23,7 @@ env:
   TF_VAR_FIREWALL_RULES: ${{vars.FIREWALL_RULES}}
   TF_VAR_CLOUD_PROVIDER: ${{vars.CLOUD_PROVIDER}}
   TF_VAR_DB_EXTENSIONS: ${{vars.DB_EXTENSIONS}}
+  TF_VAR_DC_NAME      : ${{vars.DC_NAME}}
 
 #Special permissions required for OIDC authentication
 #permissions:
@@ -75,9 +76,7 @@ jobs:
       working-directory: ./pg_database
       run: |
         export exitcode=0
-        echo $pwd
-        ./tf.sh
-
+        terraform plan -detailed-exitcode -no-color -out tfplan-var || export exitcode=$?
         echo "exitcode=$exitcode" >> $GITHUB_OUTPUT
 
         if [ $exitcode -eq 1 ]; then
@@ -97,7 +96,7 @@ jobs:
     # Create string output of Terraform Plan
     - name: Create String Output
       id: tf-plan-string
-      working-directory: ./PG_and_KV
+      working-directory: ./pg_database
       run: |
         TERRAFORM_PLAN=$(terraform show -no-color tfplan)
         delimiter="$(openssl rand -hex 8)"
