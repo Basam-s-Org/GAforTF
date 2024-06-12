@@ -2,14 +2,14 @@ terraform plan -detailed-exitcode -no-color -out tfplan-var \
 -var "azure_subscription_id = ${AZURE_SUBSCRIPTION_ID}" \
 -var "azure_tenant_id = ${AZURE_SUBSCRIPTION_ID}" \
 -var "azure_client_id = ${AZURE_CLIENT_ID}" \
--var "azure_client_secret = ${secrets.azure_client_secret}" \
--var "instaclustr_api_cred = ${{ secrets.instaclustr_api_cred}}" \
--var "rg_name = ${{ var.rg_name}}" \
--var "rg_location = ${{ var.rg_location}}" \
--var "db_name = ${{ var.db_name}}" \
--var "db_version = ${{ var.db_version}}" \
--var "db_secret_kv = ${{ var.db_secret_kv}}" \
--var "firewall_rules = ${{ var.firewall_rules}}" \
--var "cloud_provider = ${{ var.cloud_provider}}" \
--var "db_extensions = ${{ var.db_extensions}}" \
--var "dc_name = ${{ var.dc_name}}" || export exitcode=$?
+-var "azure_client_secret = ${AZURE_CLIENT_SECRET}" \
+-var "instaclustr_api_cred = ${INSTACLUSTR_API_CRED}" \
+-var "rg_name = ${RG_NAME}" \
+-var "rg_location = ${RG_LOCATION}" \
+-var "db_name = ${DB_NAME}" \
+-var "db_version = ${DB_VERSION}" \
+-var "db_secret_kv = ${DB_SECRET_KV}" \
+-var "firewall_rules = ${FIREWALL_RULES}" \
+-var "cloud_provider = ${CLOUD_PROVIDER}" \
+-var "db_extensions = ${DB_EXTENSIONS}" \ 
+-var "dc_name = ${DC_NAME}" || export exitcode=$?

@@ -14,6 +14,15 @@ env:
   AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
   AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
   AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+  INSTACLUSTR_API_CRED: ${{ var.INSTACLUSTR_API_CRED}}
+  RG_NAME: ${{var.RG_NAME}}
+  RG_LOCATION: ${{var.RG_LOCATION}}
+  DB_NAME: ${{var.DB_NAME}}
+  DB_VERSION: ${{var.DB_VERSION}}
+  DB_SECRET_KV: ${{var.DB_SECRET_KV}}
+  FIREWALL_RULES: ${{var.FIREWALL_RULES}}
+  CLOUD_PROVIDER: ${{var.CLOUD_PROVIDER}}
+  DB_EXTENSIONS: ${{var.DB_EXTENSIONS}}
 
 #Special permissions required for OIDC authentication
 #permissions:
