@@ -56,6 +56,12 @@ jobs:
            echo $PWD
            ./terraform_init.sh
 
+    # Build tfvars file
+    - name: build tfvars
+      run: |
+           cd pg_database
+           ./build_tfvars.sh
+
     # Checks that all Terraform configuration files adhere to a canonical format
     # Will fail the build if not
     #- name: Terraform Format
