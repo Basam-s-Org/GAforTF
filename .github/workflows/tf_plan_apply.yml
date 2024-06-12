@@ -90,6 +90,7 @@ jobs:
     # Save plan to artifacts
     - name: Publish Terraform Plan
       uses: actions/upload-artifact@v3
+      working-directory: ./pg_database
       with:
         name: tfplan
         path: tfplan
