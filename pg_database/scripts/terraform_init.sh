@@ -1,0 +1,3 @@
+cd ..
+terraform init
+
