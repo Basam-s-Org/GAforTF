@@ -17,4 +17,4 @@ echo -e "dockerfiles="${TF_VAR_DOCKERFILES}"\n" >> ./terraform.tfvars
 echo -e "tags="${TF_VAR_TAGS}"\n" >> ./terraform.tfvars
 cat ./terraform.tfvars
 
-
+ 
