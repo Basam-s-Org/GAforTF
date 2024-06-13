@@ -116,7 +116,7 @@ jobs:
     - name: Publish Terraform Plan to Task Summary
       env:
         SUMMARY: ${{ steps.tf-plan-string.outputs.summary }}
-      working-directory: ./iac
+      working-directory: ./pg_database
       run: |
         echo "$SUMMARY" >> $GITHUB_STEP_SUMMARY
 
