@@ -1,0 +1,11 @@
+# Use the official Python image from the Docker Hub
+FROM python:latest
+
+# Install SQLAlchemy and psycopg2-binary
+RUN pip install SQLAlchemy psycopg2-binary
+
+# Set the working directory
+WORKDIR /app
+
+# Keep the container running
+CMD ["tail", "-f", "/dev/null"]

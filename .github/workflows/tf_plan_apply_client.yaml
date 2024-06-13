@@ -4,26 +4,30 @@ name: 'Terraform Plan/Apply'
 on:
   push:
     branches:
-    - main
+    - client
   pull_request:
     branches:
-    - main
+    - client
 
 env:
-  TF_VAR_AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
-  TF_VAR_AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
-  TF_VAR_AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-  TF_VAR_AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
-  TF_VAR_INSTACLUSTR_API_CRED: ${{ secrets.INSTACLUSTR_API_CRED}}
-  TF_VAR_RG_NAME: ${{vars.RG_NAME}}
-  TF_VAR_RG_LOCATION: ${{vars.RG_LOCATION}}
-  TF_VAR_DB_NAME: ${{vars.DB_NAME}}
-  TF_VAR_DB_VERSION: ${{vars.DB_VERSION}}
-  TF_VAR_DB_SECRET_KV: ${{vars.DB_SECRET_KV}}
-  TF_VAR_FIREWALL_RULES: ${{vars.FIREWALL_RULES}}
-  TF_VAR_CLOUD_PROVIDER: ${{vars.CLOUD_PROVIDER}}
-  TF_VAR_DB_EXTENSIONS: ${{vars.DB_EXTENSIONS}}
-  TF_VAR_DC_NAME      : ${{vars.DC_NAME}}
+        TF_VAR_AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+        TF_VAR_AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+        TF_VAR_AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+        TF_VAR_AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+        TF_VAR_PG_PASSWORD: ${{ secrets.PG_PASSWORD }}
+        TF_VAR_RG_NAME: ${{ vars.RG_NAME }}
+        TF_VAR_RG_LOCATION: ${{ vars.RG_LOCATION }}
+        TF_VAR_KEY_VAULT_NAME: ${{ vars.KEY_VAULT_NAME }}
+        TF_VAR_ACR_NAME: ${{ vars.ACR_NAME }}
+        TF_VAR_ACI_NAME: ${{ vars.ACI_NAME }}
+        TF_VAR_PG_HOST: ${{ vars.PG_HOST }}
+        TF_VAR_PG_USER: ${{ vars.PG_USER }}
+        TF_VAR_PG_DB: ${{ vars.PG_DB }}
+        TF_VAR_ACI_CPU: ${{ vars.ACI_CPU }}
+        TF_VAR_ACI_MEMORY: ${{ vars.ACI_MEMORY }}
+        TF_VAR_DOCKERFILES: ${{ vars.DOCKERFILES }}
+        TF_VAR_TAGS: ${{ vars.TAGS }}
+
 
 #Special permissions required for OIDC authentication
 #permissions:
@@ -45,35 +49,35 @@ jobs:
     # Install the latest version of the Terraform CLI
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
-    #  runs:
-    #    using: 'node20'
-    #    main: 'dist/index.js'
+      with:
+        terraform_wrapper: false
+      #runs:
+      #  using: 'node20'
+      #  main: 'dist/index.js'
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
       run: |
-           echo $PWD
-           cd pg_database
-           echo $PWD
+           cd pg_client
            ./terraform_init.sh
 
     # Build tfvars file
     - name: build tfvars
       run: |
-           cd pg_database
+           cd pg_client
            ./build_tfvars.sh
 
     # Checks that all Terraform configuration files adhere to a canonical format
     # Will fail the build if not
     #- name: Terraform Format
     #  run: terraform fmt -check
-    #  working-directory: ./pg_database
+    #  working-directory: ./pg_client
 
     # Generates an execution plan for Terraform
     # An exit code of 0 indicated no changes, 1 a terraform failure, 2 there are pending changes.
     - name: Terraform Plan
       id: tf-plan
-      working-directory: ./pg_database
+      working-directory: ./pg_client
       run: |
         export exitcode=0
         terraform plan -detailed-exitcode -no-color -out tfplan || export exitcode=$?
@@ -93,12 +97,12 @@ jobs:
       with:
         name: tfplan
         path: |
-          ./pg_database/tfplan
+          ./pg_client/tfplan
 
     # Create string output of Terraform Plan
     - name: Create String Output
       id: tf-plan-string
-      working-directory: ./pg_database
+      working-directory: ./pg_client
       run: |
         TERRAFORM_PLAN=$(terraform show -no-color tfplan)
         delimiter="$(openssl rand -hex 8)"
@@ -116,13 +120,13 @@ jobs:
     - name: Publish Terraform Plan to Task Summary
       env:
         SUMMARY: ${{ steps.tf-plan-string.outputs.summary }}
-      working-directory: ./pg_database
+      working-directory: ./pg_client
       run: |
         echo "$SUMMARY" >> $GITHUB_STEP_SUMMARY
 
     # If this is a PR post the changes
     - name: Push Terraform Output to PR
-      il: github.ref != 'refs/heads/client'
+      if: github.ref != 'refs/heads/client'
       uses: actions/github-script@v6
       env:
         SUMMARY: "${{ steps.tf-plan-string.outputs.summary }}"
