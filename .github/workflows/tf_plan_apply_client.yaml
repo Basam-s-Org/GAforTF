@@ -28,6 +28,7 @@ env:
         TF_VAR_DOCKERFILES: ${{ vars.DOCKERFILES }}
         TF_VAR_TAGS: ${{ vars.TAGS }}
 
+
 #Special permissions required for OIDC authentication
 #permissions:
 #  id-token: write
