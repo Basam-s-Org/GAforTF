@@ -177,6 +177,7 @@ jobs:
       uses: actions/download-artifact@v4
       with:
         name: tfplan
+	path: ./pg_database
 
     # Terraform Apply
     - name: Terraform Apply
