@@ -182,6 +182,6 @@ jobs:
     - name: Terraform Apply
       run: |
         find .
-        terraform apply -auto-approve tfplan
-   #   working-directory:  ./pg_database
+        terraform apply -auto-approve ../tfplan
+      working-directory:  ./pg_database
 
