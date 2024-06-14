@@ -177,10 +177,11 @@ jobs:
       uses: actions/download-artifact@v4
       with:
         name: tfplan
-	path: ./pg_database
 
     # Terraform Apply
     - name: Terraform Apply
-      run: terraform apply -auto-approve tfplan
-      working-directory:  ./pg_database
+      run: |
+        find .
+        terraform apply -auto-approve tfplan
+   #   working-directory:  ./pg_database
 
