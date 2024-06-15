@@ -183,5 +183,7 @@ jobs:
       run: |
         find .
         terraform apply -auto-approve ../tfplan
+        terraform show
+        terraform destroy -auto-approve
       working-directory:  ./pg_database
 
