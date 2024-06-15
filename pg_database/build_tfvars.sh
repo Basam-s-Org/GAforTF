@@ -1,4 +1,4 @@
-terraform import azurerm_resource_group.example /subscriptions/7a07f268-eb64-45df-b63e-b5595e713287/resourceGroups/bassam-org-database
+terraform import azurerm_resource_group.org_rg /subscriptions/7a07f268-eb64-45df-b63e-b5595e713287/resourceGroups/bassam-org-database
 
 echo -e "azure_subscription_id=\""${TF_VAR_AZURE_SUBSCRIPTION_ID}"\"\n" > ./terraform.tfvars
 echo -e "azure_tenant_id=\""${TF_VAR_AZURE_TENANT_ID}"\"\n" >> ./terraform.tfvars
