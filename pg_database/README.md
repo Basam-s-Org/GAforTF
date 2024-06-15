@@ -4,7 +4,7 @@ This project contains Terraform configurations to provision Instaclustr-managed 
 - An Azure Key Vault (AKV)
 - A PostgreSQL cluster with ANF storage on Azure (PG)
 - An firewall rule added to allow incoming connections to PG
-- PG admin password store in AKV
+- PG admin password store in AKV 
 
 ## Modules
 
