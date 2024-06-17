@@ -104,25 +104,31 @@ variable "provider_account_name" {
 }
 
 
+# node_side: Size of the node.  Default to PGS-PRD-Standard_E8s_v4-ANF-2048
+
+variable "db_node_size" {
+  type    = string
+  default = "PGS-PRD-Standard_E8s_v4-ANF-2048"
+}
+
 # dc_name: A logical name for the data centre within a cluster.
 # This name must be unique in the cluster.
 
 variable "dc_name" {
   type    = string
+  default = null
 }
 
 
-# node_side: Size of the node.  Default to PGS-PRD-Standard_E8s_v4-ANF-2048
-
 variable "node_size" {
+
   type    = string
   default = "PGS-PRD-Standard_E8s_v4-ANF-2048"
 }
 
-
 # number_of_nodes: Number of nodes to provision in data centre
 
-variable "number_of_nodes" {
+variable "db_number_of_nodes" {
   type    = number
   default = 2
 }
@@ -148,6 +154,12 @@ variable "storage_network" {
   default = "10.3.0.0/24"
 }
 
+# internal variable for storage network: Is set to "" for non-ANF clusters and
+# to the value of storage_network above for ANF clusters.
+variable "dc_storage_network" {
+  type    = string
+}
+
 # client_to_cluster_encryption: Enable client to cluster Encryption. Default is false.
 
 variable "client_to_cluster_encryption" {
@@ -158,17 +170,11 @@ variable "client_to_cluster_encryption" {
 # intra_dc_replication_mode: Create the PostgreSQL cluster with the selected replication mode.
 # Either ASYNCHRONOUS or SYNCHRONOUS.  Default is SYNCHRONOUS
 
-variable "intra_dc_replication_mode" {
+variable "db_replication_mode" {
   type    = string
   default = "SYNCHRONOUS" 
 }
 
-# dc_region: Region of the data centre. Default is CENTRAL_US
-
-variable "dc_region" {
-  type    = string
-  default = "CENTRAL_US"
-}
 
 
 # cloud_provider: Name of a cloud provider service.
@@ -177,4 +183,11 @@ variable "dc_region" {
 
 variable "cloud_provider" {
   type    = string
+}
+
+# cloud_provider_region: Region of the data centre. Default is CENTRAL_US
+
+variable "cloud_provider_region" {
+  type    = string
+  default = "CENTRAL_US"
 }

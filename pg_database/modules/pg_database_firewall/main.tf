@@ -1,5 +1,8 @@
 # Define firewall rules for an Instaclustr cluster
 resource "instaclustr_cluster_network_firewall_rules_v2" "example" {
+  # Only create resource if there is at least one firewall rule defined
+  count = length(var.firewall_rules) == 0 ? 0 : 1
+
   cluster_id = var.cluster_id  # ID of the cluster
 
   dynamic "firewall_rule" {

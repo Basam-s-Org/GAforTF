@@ -24,15 +24,11 @@ variable "instaclustr_api_cred" {
 }
 
 
-### Resource Variables
-
-# Azure Resource Group Name
+### Azure Resource Group Variables for Key Vault
 
 variable "rg_name" {
   type = string
 }
-
-# Azure Resource Location
 
 variable "rg_location" {
   type    = string
@@ -41,10 +37,11 @@ variable "rg_location" {
 
 ####  Azure PostgreSQL database Firewall Paramters
 
-# firewall_rules: Firewall Allow CIDR list
+# firewall_rules: Firewall Allow CIDR list. Default is no firewall rules.
 
 variable "firewall_rules"{
   type    = list
+  default = []
 }
 
 
@@ -68,7 +65,7 @@ variable "synchronous_mode_strict" {
 }
 
 
-# db_name: PostgreSQL database name
+# db_name: PostgreSQL cluster name
 
 variable "db_name" {
   type    = string
@@ -79,6 +76,7 @@ variable "db_name" {
 
 variable "db_version" {
   type    = string
+  default = "16.2.0"
 }
 
 # private_network_cluster: Creates the cluster with private network only.
@@ -100,6 +98,7 @@ variable "db_secret_kv" {
 
 variable "db_extensions" {
   type    = list
+  default = []
 }
 
 # provider_account_name: For customers running in their own account. Your provider
@@ -113,18 +112,18 @@ variable "provider_account_name" {
   default = "INSTACLUSTR"
 }
 
+# dc_name: Optional name of the datacenter. It is set to
+# "${var.cloud_provider}_${var.cloud_provider_region}" if unset
 
-# dc_name: A logical name for the data centre within a cluster.
-# This name must be unique in the cluster.
 
 variable "dc_name" {
   type    = string
+  default = null
 }
-
 
 # node_side: Size of the node.  Default to PGS-PRD-Standard_E8s_v4-ANF-2048
 
-variable "node_size" {
+variable "db_node_size" {
   type    = string
   default = "PGS-PRD-Standard_E8s_v4-ANF-2048"
 }
@@ -132,7 +131,7 @@ variable "node_size" {
 
 # number_of_nodes: Number of nodes to provision in data centre
 
-variable "number_of_nodes" {
+variable "db_number_of_nodes" {
   type    = number
   default = 2 
 }
@@ -165,19 +164,12 @@ variable "client_to_cluster_encryption" {
   default = "false"
 }
 
-# intra_dc_replication_mode: Create the PostgreSQL cluster with the selected replication mode.
+# db_replication_mode: Create the PostgreSQL cluster with the selected replication mode.
 # Either ASYNCHRONOUS or SYNCHRONOUS.  Default is SYNCHRONOUS
 
-variable "intra_dc_replication_mode" {
+variable "db_replication_mode" {
   type    = string
   default = "SYNCHRONOUS" 
-}
-
-# dc_region: Region of the data centre. Default is CENTRAL_US
-
-variable "dc_region" {
-  type    = string
-  default = "CENTRAL_US"
 }
 
 
@@ -188,4 +180,13 @@ variable "dc_region" {
 
 variable "cloud_provider" {
   type    = string
+  default = "AZURE_AZ"
+}
+
+# cloud_provider_region: Region of the data centre. Default is CENTRAL_US
+
+variable "cloud_provider_region" {
+  type    = string
+  default = "CENTRAL_US"
+
 }
