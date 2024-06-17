@@ -4,10 +4,10 @@ name: 'Terraform Plan/Apply/Destroy'
 on:
   push:
     branches:
-    - main_hold
+    - main
   pull_request:
     branches:
-    - main_hold
+    - main
 
 env:
   TF_VAR_AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}

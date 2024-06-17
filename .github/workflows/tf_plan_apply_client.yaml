@@ -3,10 +3,10 @@ name: 'Terraform Plan/Apply'
 on:
   push:
     branches:
-      - main
+      - main_hold
   pull_request:
     branches:
-      - main
+      - main_hold
 
 env:
   TF_VAR_AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
