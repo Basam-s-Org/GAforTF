@@ -15,4 +15,3 @@ echo -e "aci_cpu=\""${TF_VAR_CLIENT_ACI_CPU}"\"\n">> ./terraform.tfvars
 echo -e "aci_memory=\""${TF_VAR_CLIENT_ACI_MEMORY}"\"\n">> ./terraform.tfvars
 echo -e "tags=\""${TF_VAR_CLIENT_TAGS}"\"\n">> ./terraform.tfvars
 cat ./terraform.tfvars
-
