@@ -13,6 +13,7 @@ echo -e "pg_password=\""${TF_VAR_CLIENT_PG_PASSWORD}"\"\n">> ./terraform.tfvars
 echo -e "pg_db=\""${TF_VAR_CLIENT_PG_DB}"\"\n">> ./terraform.tfvars
 echo -e "aci_cpu=\""${TF_VAR_CLIENT_ACI_CPU}"\"\n">> ./terraform.tfvars
 echo -e "aci_memory=\""${TF_VAR_CLIENT_ACI_MEMORY}"\"\n">> ./terraform.tfvars
-echo -e "tags=\""${TF_VAR_CLIENT_TAGS}"\"\n">> ./terraform.tfvars
+echo -e "dockerfiles="${TF_VAR_DOCKERFILES}"\n">> ./terraform.tfvars
+echo -e "tags="${TF_VAR_CLIENT_TAGS}"\n">> ./terraform.tfvars
 cat ./terraform.tfvars
 
