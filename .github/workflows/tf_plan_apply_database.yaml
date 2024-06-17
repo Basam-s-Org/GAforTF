@@ -179,12 +179,12 @@ jobs:
        with:
          name: tfplan
  
-#     # Terraform Apply/Destroy
-#     - name: Terraform Apply Destroy
-#       run: |
-#         find .
-#         terraform apply -auto-approve ../tfplan
-#         terraform show
-#         terraform destroy -auto-approve
-#       working-directory:  ./pg_database
+     # Terraform Apply/Destroy
+     - name: Terraform Apply Destroy
+       run: |
+         find .
+         terraform apply -auto-approve ../tfplan
+         terraform show
+         terraform destroy -auto-approve
+       working-directory:  ./pg_database
  
