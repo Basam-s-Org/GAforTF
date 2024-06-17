@@ -23,10 +23,10 @@ env:
         TF_VAR_CLIENT_PG_HOST: ${{ vars.PG_HOST }}
         TF_VAR_CLIENT_PG_USER: ${{ vars.PG_USER }}
         TF_VAR_CLIENT_PG_DB: ${{ vars.PG_DB }}
-        TF_VAR_ACI_CPU: ${{ vars.ACI_CPU }}
-        TF_VAR_ACI_MEMORY: ${{ vars.ACI_MEMORY }}
-        TF_VAR_DOCKERFILES: ${{ vars.DOCKERFILES }}
-        TF_VAR_TAGS: ${{ vars.TAGS }}
+        TF_VAR_CLIENT_ACI_CPU: ${{ vars.ACI_CPU }}
+        TF_VAR_CLIENT_ACI_MEMORY: ${{ vars.ACI_MEMORY }}
+        TF_VAR_CLIENT_DOCKERFILES: ${{ vars.DOCKERFILES }}
+        TF_VAR_CLIENT_TAGS: ${{ vars.TAGS }}
 
 
 #Special permissions required for OIDC authentication
