@@ -25,11 +25,11 @@ resource "azurerm_key_vault" "org_kv" {
     object_id = var.object_id       # Object ID (user or service principal) to grant access
 
     # List of secret permissions to grant
-    secret_permissions = [
-      "Get",                        # Permission to get secrets
-      "List",                       # Permission to list secrets
-      "Set",                        # Permission to set secrets
-      "Delete"                      # Permission to delete secrets
-    ]
+    key_permissions = [ "Get", "Create", "Delete", "Purge" ] # Key permissions
+    secret_permissions = [ "Get", "Set", "List", "Delete", "Purge" ] # Secret permissions
+    storage_permissions = [ "Get" ]                        # Storage permissions
+
+
+
   }
 }

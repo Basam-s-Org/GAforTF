@@ -4,7 +4,7 @@ This project contains Terraform configurations to provision Instaclustr-managed 
 - An Azure Key Vault (AKV)
 - A PostgreSQL cluster with ANF storage on Azure (PG)
 - An firewall rule added to allow incoming connections to PG
-- PG admin password store in AKV 
+- PG admin password store in AKV
 
 ## Modules
 
@@ -37,8 +37,14 @@ This project contains Terraform configurations to provision Instaclustr-managed 
 - `rg_name` (string): The name of the resource group
 - `rg_location` (string): The location of the resource group.
 - `instaclustr_api_cred` (string): The username namd API key used for provisioning.  Format of this parameter is <user>:api_key
+- `dc_name` (string, optional): The logical data centre name
+- `cloud_provider` (string): The cloud provider to use (AWS_VPC, GCP, AZURE_AZ)
+- `cloud_provider_region` (string): The cloud provider region to use
 - `db_name` (string):  The desired name of the database
 - `db_version` (string):  The version of the PostgreSQL to use for the database
+- `db_node_size` (string): The size / SKU of the cluster nodes
+- `db_number_of_nodes` (string): The number of nodes in the cluster
+- `db_replication_mode` (string): SYNCHRONOUS (default) or ASYNCHRONOUS
 - `db_secret_kv` (string):  The key vault name where database secrets are to be stored
 
 **Outputs**:

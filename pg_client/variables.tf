@@ -66,12 +66,14 @@ variable "pg_db" {
 }
 
 variable "aci_cpu" {
-  description = "The CPU allocation for the container instance."
+  description = "The CPU allocation (in fractual vCores) for the container instance."
+  default     = 1.0
   type        = number
 }
 
 variable "aci_memory" {
-  description = "The memory allocation for the container instance."
+  description = "The memory allocation (in GB) for the container instance."
+  default     = 2
   type        = number
 }
 
