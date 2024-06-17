@@ -76,7 +76,7 @@ jobs:
       working-directory: ./pg_database
       run: |
         export exitcode=0
-        terraform plan -detailed-exitcode -no-color -out tfplan || export exitcode=$?
+        terraform plan -detailed-exitcode -no-color -out tfplan_db || export exitcode=$?
         echo "exitcode=$exitcode" >> $GITHUB_OUTPUT
 
         if [ $exitcode -eq 1 ]; then
@@ -91,16 +91,16 @@ jobs:
     - name: Publish Terraform Plan
       uses: actions/upload-artifact@v4
       with:
-        name: tfplan
+        name: tfplan_db
         path: |
-          ./pg_database/tfplan
+          ./pg_database/tfplan_db
 
     # Create string output of Terraform Plan
     - name: Create String Output
       id: tf-plan-string
       working-directory: ./pg_database
       run: |
-        TERRAFORM_PLAN=$(terraform show -no-color tfplan)
+        TERRAFORM_PLAN=$(terraform show -no-color tfplan_db)
         delimiter="$(openssl rand -hex 8)"
         echo "summary<<${delimiter}" >> $GITHUB_OUTPUT
         echo "## Terraform Plan Output" >> $GITHUB_OUTPUT
@@ -177,13 +177,13 @@ jobs:
      - name: Download Terraform Plan
        uses: actions/download-artifact@v4
        with:
-         name: tfplan
+         name: tfplan_db
  
      # Terraform Apply/Destroy
      - name: Terraform Apply Destroy
        run: |
          find .
-         terraform apply -auto-approve ../tfplan
+         terraform apply -auto-approve ../tfplan_db
          terraform show
          terraform destroy -auto-approve
        working-directory:  ./pg_database
