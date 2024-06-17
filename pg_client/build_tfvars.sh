@@ -16,4 +16,3 @@ echo -e "aci_memory=\""${TF_VAR_CLIENT_ACI_MEMORY}"\"\n">> ./terraform.tfvars
 echo -e "dockerfiles="${TF_VAR_CLIENT_DOCKERFILES}"\n">> ./terraform.tfvars
 echo -e "tags="${TF_VAR_CLIENT_TAGS}"\n">> ./terraform.tfvars
 cat ./terraform.tfvars
-
