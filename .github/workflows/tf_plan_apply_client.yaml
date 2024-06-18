@@ -1,4 +1,4 @@
-name: 'PG_Client: Terraform Plan/Apply/Destroy'
+name: 'PG Client: Terraform Plan/Apply/Destroy'
 
 on:
   push:

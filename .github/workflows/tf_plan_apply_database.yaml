@@ -4,10 +4,10 @@ name: 'PG Database: Terraform Plan/Apply/Destroy'
 on:
   push:
     branches:
-    - main
+    - main_hold
   pull_request:
     branches:
-    - main
+    - main_hold
 
 env:
   TF_VAR_AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
